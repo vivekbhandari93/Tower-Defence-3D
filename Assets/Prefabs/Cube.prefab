@@ -79,7 +79,7 @@ TextMesh:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 722244899}
-  m_Text: 20,10
+  m_Text: 0,0
   m_OffsetZ: 0
   m_CharacterSize: 1
   m_LineSpacing: 1
@@ -103,6 +103,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5139134945482189646}
   - component: {fileID: 1366837546200933754}
+  - component: {fileID: 2628856273204917796}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -119,7 +120,7 @@ Transform:
   m_GameObject: {fileID: 2571836896697215850}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 10, y: 10, z: 10}
+  m_LocalScale: {x: 9.5, y: 9.5, z: 9.5}
   m_Children:
   - {fileID: 5638736778455687698}
   - {fileID: 5638736780403318267}
@@ -143,6 +144,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gridSize: 10
+--- !u!114 &2628856273204917796
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2571836896697215850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff2c5e63a3af88a4bb885c1089e1539c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5638736778381535518
 GameObject:
   m_ObjectHideFlags: 0
@@ -202,7 +215,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 2abde596284c4cb4c9b2a0658feb795a, type: 2}
+  - {fileID: 2100000, guid: 9dba9783cd6b6ed47b722d6908435efe, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -296,7 +309,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9dba9783cd6b6ed47b722d6908435efe, type: 2}
+  - {fileID: 2100000, guid: 2abde596284c4cb4c9b2a0658feb795a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
