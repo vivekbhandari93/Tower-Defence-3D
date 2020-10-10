@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyPath : MonoBehaviour
 {
-    [SerializeField] List<Waypoints> waypoints;
+    [SerializeField] List<Waypoint> waypoints;
     const float nextPointTimeDelay = 1f;
 
     private void Start()
@@ -14,7 +14,7 @@ public class EnemyPath : MonoBehaviour
 
     IEnumerator GetPath()
     {
-        foreach(Waypoints waypoint in waypoints)
+        foreach(Waypoint waypoint in waypoints)
         {
             transform.position = waypoint.transform.position;
             yield return new WaitForSeconds(nextPointTimeDelay);
