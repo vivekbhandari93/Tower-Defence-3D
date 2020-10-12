@@ -4,17 +4,19 @@ using UnityEngine;
 
 public class EnemyPath : MonoBehaviour
 {
-    [SerializeField] List<Waypoint> waypoints;
+    
     const float nextPointTimeDelay = 1f;
 
     private void Start()
     {
-        StartCoroutine(GetPath());
+        PathFinder pathFinder = FindObjectOfType<PathFinder>();
+        var path = pathFinder.GetPath();
+        StartCoroutine(FollowPath(path));
     }
 
-    IEnumerator GetPath()
+    IEnumerator FollowPath(List<Waypoint> path)
     {
-        foreach(Waypoint waypoint in waypoints)
+        foreach (Waypoint waypoint in path)
         {
             transform.position = waypoint.transform.position;
             yield return new WaitForSeconds(nextPointTimeDelay);

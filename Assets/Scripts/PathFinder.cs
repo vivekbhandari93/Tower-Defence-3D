@@ -10,19 +10,21 @@ public class PathFinder : MonoBehaviour
     Waypoint searchCenter;
     bool isRunning = true;
 
+    List<Waypoint> path = new List<Waypoint>();
+
 
     Vector2Int[] directions = { Vector2Int.up, Vector2Int.right, Vector2Int.down, Vector2Int.left };
 
     [SerializeField] Waypoint startingPoint;
     [SerializeField] Waypoint endingPoint;
 
-
-    private void Start()
+    public List<Waypoint> GetPath() 
     {
         LoadBlock();
         ColorStartAndEnd();
         BreadthFirstSearch();
-
+        CreatePath();
+        return path; 
     }
 
     private void LoadBlock()
@@ -52,12 +54,12 @@ public class PathFinder : MonoBehaviour
     private void BreadthFirstSearch()
     {
         queue.Enqueue(startingPoint);
-        print("Startingpoint push in!"+ startingPoint);
+        print("Journey starts at "+ startingPoint);
 
         while(queue.Count > 0 && isRunning)
         {
             searchCenter = queue.Dequeue();
-            print("SearchCenter pop out!"+ searchCenter);  // TODO remove
+            print("SearchCenter pop out!"+ searchCenter);
             CheckForEndPoint();
             ExploreNeighbours();
             searchCenter.isExplored = true;
@@ -69,7 +71,7 @@ public class PathFinder : MonoBehaviour
         if(searchCenter == endingPoint)
         {
             isRunning = false;
-            print("SeachCenter is endPoint." + searchCenter); // TODO remove
+            print("Journey ends at " + searchCenter);
         }
     }
 
@@ -80,13 +82,9 @@ public class PathFinder : MonoBehaviour
         foreach (Vector2Int direction in directions)
         {
             Vector2Int neighbourCoordinates = searchCenter.GetGridPos() + direction;
-            try
+            if(grid.ContainsKey(neighbourCoordinates))
             {
                 QueueNewNeighbour(neighbourCoordinates);
-            }
-            catch
-            {
-                // TODO key in grid not found!
             }
         }
     }
@@ -101,8 +99,22 @@ public class PathFinder : MonoBehaviour
         else
         {
             queue.Enqueue(neighbour);
-            print("New neighbour added." + neighbour); // TODO remove
+            print("New neighbour added." + neighbour);
             neighbour.exploredFrom = searchCenter; 
         }
+    }
+
+    private void CreatePath()
+    {
+        path.Add(endingPoint);
+
+        Waypoint previous = endingPoint.exploredFrom;
+        while(previous != startingPoint)
+        {
+            path.Add(previous);
+            previous = previous.exploredFrom;
+        }
+        path.Add(startingPoint);
+        path.Reverse();
     }
 }
