@@ -20,10 +20,13 @@ public class PathFinder : MonoBehaviour
 
     public List<Waypoint> GetPath() 
     {
-        LoadBlock();
-        ColorStartAndEnd();
-        BreadthFirstSearch();
-        CreatePath();
+        if (path.Count == 0)
+        {
+            LoadBlock();
+            ColorStartAndEnd();
+            BreadthFirstSearch();
+            CreatePath();
+        }
         return path; 
     }
 
@@ -34,7 +37,7 @@ public class PathFinder : MonoBehaviour
         {
             if (grid.ContainsKey(waypoint.GetGridPos()))
             {
-                Debug.LogWarning("Skipping overlapping block" + waypoint);
+                // TODO Skipping overlapping block
             }
             else
             {
@@ -54,12 +57,12 @@ public class PathFinder : MonoBehaviour
     private void BreadthFirstSearch()
     {
         queue.Enqueue(startingPoint);
-        print("Journey starts at "+ startingPoint);
+        //print("Journey starts at "+ startingPoint);
 
         while(queue.Count > 0 && isRunning)
         {
             searchCenter = queue.Dequeue();
-            print("SearchCenter pop out!"+ searchCenter);
+            //print("SearchCenter pop out!"+ searchCenter);
             CheckForEndPoint();
             ExploreNeighbours();
             searchCenter.isExplored = true;
@@ -71,7 +74,7 @@ public class PathFinder : MonoBehaviour
         if(searchCenter == endingPoint)
         {
             isRunning = false;
-            print("Journey ends at " + searchCenter);
+            //print("Journey ends at " + searchCenter);
         }
     }
 
@@ -99,7 +102,7 @@ public class PathFinder : MonoBehaviour
         else
         {
             queue.Enqueue(neighbour);
-            print("New neighbour added." + neighbour);
+            //print("New neighbour added." + neighbour);
             neighbour.exploredFrom = searchCenter; 
         }
     }
