@@ -6,7 +6,7 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {
     [SerializeField] float spawnDelay = 10f;
-    [SerializeField] EnemyPath enemyPrefab;
+    [SerializeField] EnemyDamage enemyPrefab;
 
     void Start()
     {
