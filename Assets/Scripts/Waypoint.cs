@@ -1,11 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 
 public class Waypoint : MonoBehaviour
 {
     public bool isExplored = false;
+    public bool isPlaceable = true;
+
     public Waypoint exploredFrom;
 
     const int gridSize = 10;
@@ -23,6 +25,16 @@ public class Waypoint : MonoBehaviour
             );
     }
 
+    private void OnMouseOver()
+    {
+        if (Input.GetMouseButtonDown(0) && isPlaceable)
+        {
+            print(gameObject.name);
+        }
+    }
+
+    // This method is disabled in the editor (not required anymore).
+    // Kept for future referance, purpose only.
     public void SetTopColor(Color color)
     {
         var topView = transform.Find("Top").GetComponent<MeshRenderer>();
