@@ -8,6 +8,8 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] float spawnDelay = 10f;
     [SerializeField] EnemyDamage enemyPrefab;
 
+    [SerializeField] Transform enemiesTransform;
+
     void Start()
     {
         StartCoroutine(SpawnEnemy());
@@ -17,7 +19,9 @@ public class EnemySpawner : MonoBehaviour
     {
         while (true)
         {
-            Instantiate(enemyPrefab, transform.position, Quaternion.identity);
+            var enemyInstance = Instantiate(enemyPrefab, transform.position, Quaternion.identity);
+            enemyInstance.transform.parent = enemiesTransform;
+
             yield return new WaitForSeconds(spawnDelay);
         }
     }
